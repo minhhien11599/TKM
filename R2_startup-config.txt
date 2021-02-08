@@ -1,0 +1,96 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R2
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 172.16.7.1 255.255.255.0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ ip address 172.16.8.2 255.255.255.0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface Serial2/0
+ ip address 14.169.81.2 255.255.255.252
+ ip nat outside
+!
+interface Serial3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface FastEthernet4/0
+ no ip address
+ shutdown
+!
+interface FastEthernet5/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet9/0
+ no ip address
+ duplex auto
+ speed auto
+!
+ip nat inside source list 1 interface Serial2/0 overload
+ip classless
+ip route 172.16.9.0 255.255.255.0 172.16.8.1 
+ip route 0.0.0.0 0.0.0.0 14.168.81.1 
+ip route 0.0.0.0 0.0.0.0 14.169.81.1 
+!
+ip flow-export version 9
+!
+!
+access-list 1 permit any
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

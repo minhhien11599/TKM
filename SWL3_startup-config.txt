@@ -1,0 +1,176 @@
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname SWL3
+!
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+ no switchport
+ ip address 192.168.18.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/4
+ no switchport
+ ip address 192.168.10.2 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 00e0.f902.0401
+ ip address 192.168.7.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan20
+ mac-address 00e0.f902.0402
+ ip address 192.168.2.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan30
+ mac-address 00e0.f902.0403
+ ip address 192.168.3.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan40
+ mac-address 00e0.f902.0404
+ ip address 192.168.4.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan50
+ mac-address 00e0.f902.0405
+ ip address 192.168.5.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan60
+ mac-address 00e0.f902.0406
+ ip address 192.168.6.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+interface Vlan80
+ mac-address 00e0.f902.0407
+ ip address 192.168.8.1 255.255.255.0
+ ip helper-address 192.168.2.2
+!
+router ospf 1
+ log-adjacency-changes
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.18.0 0.0.0.255 area 0
+ network 192.168.7.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+ network 192.168.3.0 0.0.0.255 area 0
+ network 192.168.4.0 0.0.0.255 area 0
+ network 192.168.5.0 0.0.0.255 area 0
+ network 192.168.6.0 0.0.0.255 area 0
+ network 192.168.8.0 0.0.0.255 area 0
+!
+router rip
+!
+ip classless
+ip route 192.168.13.0 255.255.255.0 192.168.10.1 
+ip route 0.0.0.0 0.0.0.0 192.168.18.1 
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
+
